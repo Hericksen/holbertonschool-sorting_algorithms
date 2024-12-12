@@ -4,11 +4,11 @@
  * @xp: number one to swap
  * @yp:	number two to swap
  */
-void swap(int *xp, int *yp)
+void swap(int *array, int xp, int yp)
 {
-	int temp = *xp;
-	*xp = *yp;
-	*yp = temp;
+	int temp = array[xp];
+	array[xp] = array[yp];
+	array[yp] = temp;
 }
 /**
  * lomuto_partition - partition schema ( choosing pivot )
@@ -21,23 +21,28 @@ void swap(int *xp, int *yp)
  */
 int lomuto_partition(int *array, int low, int high, size_t size)
 {
-	int pivot = array[low];
-	int i = low + 1;
+	int pivot = array[high];
+	int i = low - 1;
 	int j;
 
-	for (j = low + 1; j <= high; j++)
+	for (j = low; j < high; j++)
 	{
 		if (array[j] < pivot)
 		{
-			swap(&array[i], &array[j]);
 			i++;
+			if (i != j)
+			{
+				swap(array, i, j);
+				print_array(array, size);
+			}
 		}
 	}
-
-	swap(&array[low], &array[i - 1]);
-	print_array(array, size);
-
-	return (i - 1);
+	if (i + 1 != high)
+	{
+		swap(array, i + 1, high);
+		print_array(array, size);
+	}
+	return (i + 1);
 }
 /**
  * quick_sort_custom - function that sorts an array of integers in ascending
