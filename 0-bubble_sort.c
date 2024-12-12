@@ -1,5 +1,4 @@
 #include "sort.h"
-
 /**
  * swap - function to swap 2 numbers
  * @xp: number one to swap
