@@ -4,18 +4,18 @@
 *
 * @array: array to print
 * @size: size of the array
-* @xp: integer to swap
-* @yp: integer to swap
+* @low: integer to swap
+* @high: integer to swap
 * Return: index of the pivot element
 */
-void swap(int *xp, int *yp, int *array, size_t size)
+void swap(int low, int high, int *array, size_t size)
 {
-	int temp = *xp;
+	int temp = array[low];
 
-	if (xp != yp)
+	if (array[low] != array[high])
 	{
-	*xp = *yp;
-	*yp = temp;
+	array[low] = array[high];
+	array[high] = temp;
 	print_array(array, size);
 	}
 }
@@ -31,25 +31,20 @@ void swap(int *xp, int *yp, int *array, size_t size)
 int lomuto_partition(int *array, int low, int high, size_t size)
 {
 	int pivot = array[high];
-
-	int i = low - 1;
-
+	int i = low;
 	int j;
-
-	if (low < 0 || high < 0 || low >= (int)size || high >= (int)size)
-		return (low);
 
 	for (j = low; j < high; j++)
 	{
-		if (array[j] < pivot)
+		if (array[j] <= pivot)
 		{
+			swap(i, j, array, size);
 			i++;
-			swap(&array[i], &array[j], array, size);
 		}
 	}
-		swap(&array[i + 1], &array[high], array, size);
+		swap(i, high, array, size);
 
-	return (i + 1);
+	return (i);
 }
 /**
 * quick_sort_custom - function that sorts an array of integers in ascending
@@ -61,16 +56,14 @@ int lomuto_partition(int *array, int low, int high, size_t size)
 */
 void quick_sort_custom(int *array, int low, int high, size_t size)
 {
-	if (low < 0 || high < 0 || low >= (int)size || high >= (int)size)
-		return;
 
 	if (low < high)
 	{
 		int idx = lomuto_partition(array, low, high, size);
 
-		if (idx > low)
+
 			quick_sort_custom(array, low, idx - 1, size);
-		if (idx < high)
+
 			quick_sort_custom(array, idx + 1, high, size);
 	}
 }
