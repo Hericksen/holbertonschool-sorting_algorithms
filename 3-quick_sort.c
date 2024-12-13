@@ -80,8 +80,6 @@ void quick_sort(int *array, size_t size)
 	if (array == NULL || size < 2)
 		return;
 
-	if (size == 2 && array[0] == array[1])
-		return;
-
 	quick_sort_custom(array, 0, size - 1, size);
+	}
 }
