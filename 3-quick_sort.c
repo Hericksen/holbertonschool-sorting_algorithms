@@ -1,11 +1,11 @@
 #include "sort.h"
 /**
- * lomuto_partition - partition schema ( choosing pivot )
+ * swap - swap the integer
  *
  * @array: array to print
  * @low: smallest element
- * @high: biggest element
- * @size: size of the array
+ * @xp: integer to swap
+ * @yp: integer to swap
  * Return: index of the pivot element
  */
 void swap(int *xp, int *yp, int *array, size_t size)
