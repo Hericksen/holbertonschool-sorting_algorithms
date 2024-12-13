@@ -12,9 +12,12 @@ void swap(int *xp, int *yp, int *array, size_t size)
 {
 	int temp = *xp;
 
+	if (xp != yp)
+	{
 	*xp = *yp;
 	*yp = temp;
 	print_array(array, size);
+	}
 }
 /**
 * lomuto_partition - partition schema ( choosing pivot )
@@ -41,16 +44,10 @@ int lomuto_partition(int *array, int low, int high, size_t size)
 		if (array[j] < pivot)
 		{
 			i++;
-			if (i != j)
-			{
-				swap(&array[i], &array[j], array, size);
-			}
+			swap(&array[i], &array[j], array, size);
 		}
 	}
-	if (i + 1 != high)
-	{
 		swap(&array[i + 1], &array[high], array, size);
-	}
 
 	return (i + 1);
 }
@@ -87,5 +84,4 @@ void quick_sort(int *array, size_t size)
 		return;
 
 	quick_sort_custom(array, 0, size - 1, size);
-
 }
