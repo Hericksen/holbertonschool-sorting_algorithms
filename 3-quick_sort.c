@@ -3,7 +3,7 @@
  * swap - swap the integer
  *
  * @array: array to print
- * @low: smallest element
+ * @size: size of the array
  * @xp: integer to swap
  * @yp: integer to swap
  * Return: index of the pivot element
