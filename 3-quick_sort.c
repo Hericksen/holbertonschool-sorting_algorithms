@@ -45,6 +45,7 @@ int lomuto_partition(int *array, int low, int high, size_t size)
 	{
 		swap(&array[i + 1], &array[high], array, size);
 	}
+
 	return (i + 1);
 }
 /**
@@ -57,6 +58,9 @@ int lomuto_partition(int *array, int low, int high, size_t size)
  */
 void quick_sort_custom(int *array, int low, int high, size_t size)
 {
+	if (low < 0 || high < 0 || low >= (int)size || high >= (int)size)
+		return;
+
 	if (low < high)
 	{
 		int idx = lomuto_partition(array, low, high, size);
@@ -74,6 +78,9 @@ void quick_sort_custom(int *array, int low, int high, size_t size)
 void quick_sort(int *array, size_t size)
 {
 	if (array == NULL || size < 2)
+		return;
+
+	if (size == 2 && array[0] == array[1])
 		return;
 
 	quick_sort_custom(array, 0, size - 1, size);
