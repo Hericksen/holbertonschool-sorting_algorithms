@@ -68,8 +68,10 @@ void quick_sort_custom(int *array, int low, int high, size_t size)
 	{
 		int idx = lomuto_partition(array, low, high, size);
 
-		quick_sort_custom(array, low, idx - 1, size);
-		quick_sort_custom(array, idx + 1, high, size);
+		if (idx > low)
+			quick_sort_custom(array, low, idx - 1, size);
+		if (idx < high)
+			quick_sort_custom(array, idx + 1, high, size);
 	}
 }
 /**
