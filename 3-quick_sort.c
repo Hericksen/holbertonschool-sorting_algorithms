@@ -73,8 +73,8 @@ void quick_sort_custom(int *array, int low, int high, size_t size)
  */
 void quick_sort(int *array, size_t size)
 {
-	if (array == NULL || size < 2)
-		return;
-
+	if (array && size > 1 )
+	{
 	quick_sort_custom(array, 0, size - 1, size);
+	}
 }
