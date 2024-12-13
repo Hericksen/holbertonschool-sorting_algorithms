@@ -1,34 +1,40 @@
 #include "sort.h"
 /**
- * swap - swap the integer
- *
- * @array: array to print
- * @size: size of the array
- * @xp: integer to swap
- * @yp: integer to swap
- * Return: index of the pivot element
- */
+* swap - swap the integer
+*
+* @array: array to print
+* @size: size of the array
+* @xp: integer to swap
+* @yp: integer to swap
+* Return: index of the pivot element
+*/
 void swap(int *xp, int *yp, int *array, size_t size)
 {
 	int temp = *xp;
+
 	*xp = *yp;
 	*yp = temp;
 	print_array(array, size);
 }
 /**
- * lomuto_partition - partition schema ( choosing pivot )
- *
- * @array: array to print
- * @low: smallest element
- * @high: biggest element
- * @size: size of the array
- * Return: index of the pivot element
- */
+* lomuto_partition - partition schema ( choosing pivot )
+*
+* @array: array to print
+* @low: smallest element
+* @high: biggest element
+* @size: size of the array
+* Return: index of the pivot element
+*/
 int lomuto_partition(int *array, int low, int high, size_t size)
 {
 	int pivot = array[high];
+
 	int i = low - 1;
+
 	int j;
+
+	if (low < 0 || high < 0 || low >= (int)size || high >= (int)size)
+		return (low);
 
 	for (j = low; j < high; j++)
 	{
@@ -49,13 +55,13 @@ int lomuto_partition(int *array, int low, int high, size_t size)
 	return (i + 1);
 }
 /**
- * quick_sort_custom - function that sorts an array of integers in ascending
- *
- * @array: array to print
- * @low: variable for custom quick sort
- * @high: variable for custom quick sort
- * @size: size of the array
- */
+* quick_sort_custom - function that sorts an array of integers in ascending
+*
+* @array: array to print
+* @low: variable for custom quick sort
+* @high: variable for custom quick sort
+* @size: size of the array
+*/
 void quick_sort_custom(int *array, int low, int high, size_t size)
 {
 	if (low < 0 || high < 0 || low >= (int)size || high >= (int)size)
@@ -70,11 +76,11 @@ void quick_sort_custom(int *array, int low, int high, size_t size)
 	}
 }
 /**
- * quick_sort - function that sorts an array of integers in ascending
- *
- * @array: array to print
- * @size: size of the array
- */
+* quick_sort - function that sorts an array of integers in ascending
+*
+* @array: array to print
+* @size: size of the array
+*/
 void quick_sort(int *array, size_t size)
 {
 	if (array == NULL || size < 2)
